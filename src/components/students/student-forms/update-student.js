@@ -17,7 +17,7 @@ export default function UpdateStudent(props) {
 
   useEffect(() => {
     initializeForm();
-  }, []);
+  });
 
   const initializeForm = () => {
     if (student.studentFirstName != null) {

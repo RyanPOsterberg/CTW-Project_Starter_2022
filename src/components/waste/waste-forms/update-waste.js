@@ -19,7 +19,7 @@ export default function UpdateWaste(props) {
   const [returned, setReturned] = useState('');
   useEffect(() => {
     initializeForm();
-  }, []);
+  });
 
   const initializeForm = () => {
     if (waste.WasteItemName != null) {
