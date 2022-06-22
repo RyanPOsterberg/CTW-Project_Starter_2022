@@ -8,14 +8,14 @@ import UpdateWaste from './waste-forms/update-waste';
 import { getWasteList, addWaste, updateWaste } from '../../services/services';
 
 export default function Waste() {
-  const [itemName, setItemName] = useState('');
+  const [name, setName] = useState('');
   const [owner, setOwner] = useState('');
-  const [value, setValue] = useState('');
+  const [price, setPrice] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
-  const [zip, setZip] = useState('');
-  const [accepted, setAccepted] = useState('');
-  const [returned, setReturned] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [dateAccepted, setDateAccepted] = useState('');
+  const [dateReturned, setDateReturned] = useState('');
   const [wasteList, setWasteList] = useState([]);
   const [activeWasteList, setActiveWasteList] = useState([]);
   const [updateWasteModal, setUpdateWasteModal] = useState(false);
@@ -28,47 +28,45 @@ export default function Waste() {
   const refreshWaste = async () => {
     const response = await getWasteList();
     setWasteList(response);
-    setActiveWasteList(response.filter((waste) => waste.active === true));
+    setActiveWasteList(response.filter((waste) => waste.dateReturned !== ''));
   };
 
   const onAddWasteFormSubmit = async (
-    enteredItemName,
+    enteredName,
     enteredOwner,
-    enteredValue,
+    enteredPrice,
     enteredCity,
     enteredState,
-    enteredZip,
-    enteredAccepted,
-    enteredReturned
+    enteredPostalCode,
+    enteredDateAccepted,
+    enteredDateReturned
   ) => {
     const newWaste = {
-      Name: enteredItemName,
-      Owner: enteredOwner,
-      Value: enteredValue,
-      City: enteredCity,
-      State: enteredState,
-      PostalCode: enteredZip,
-      Accepted: enteredAccepted,
-      Returned: enteredReturned,
-      active: true,
+      name: enteredName,
+      owner: enteredOwner,
+      price: enteredPrice,
+      city: enteredCity,
+      state: enteredState,
+      postalCode: enteredPostalCode,
+      dateAccepted: new Date(enteredDateAccepted),
+      dateReturned: new Date(enteredDateReturned),
     };
 
     await addWaste(newWaste);
     refreshWaste();
-    setItemName('');
+    setName('');
     setOwner('');
-    setValue('');
+    setPrice('');
     setCity('');
     setState('');
-    setZip('');
-    setAccepted('');
-    setReturned('');
+    setPostalCode('');
+    setDateAccepted('');
+    setDateReturned('');
   };
 
   const archiveWasteHandler = async (wasteId) => {
     const updatedWaste = {
       id: wasteId,
-      active: false,
     };
     await updateWaste(updatedWaste);
     refreshWaste();
@@ -86,26 +84,25 @@ export default function Waste() {
 
   const updateWasteHandler = async (
     wasteId,
-    newItemName,
+    newName,
     newOwner,
-    newValue,
+    newPrice,
     newCity,
     newState,
-    newZip,
-    newAccepted,
-    newReturned
+    newPostalCode,
+    newDateAccepted,
+    newDateReturned
   ) => {
     const updatedWaste = {
       id: wasteId,
-      wasteItemName: newItemName,
-      wasteOwner: newOwner,
-      wasteValue: newValue,
-      wasteCity: newCity,
-      wasteState: newState,
-      wasteZip: newZip,
-      wasteAccepted: newAccepted,
-      wasteReturned: newReturned,
-      active: true,
+      name: newName,
+      owner: newOwner,
+      price: newPrice,
+      city: newCity,
+      state: newState,
+      postalCode: newPostalCode,
+      dateAccepted: new Date(newDateAccepted),
+      dateReturned: new Date(newDateReturned),
     };
     await updateWaste(updatedWaste);
     refreshWaste();
@@ -133,22 +130,22 @@ export default function Waste() {
             Waste Items
           </Typography>
           <AddWaste
-            itemName={itemName}
+            name={name}
             owner={owner}
-            value={value}
+            price={price}
             city={city}
             state={state}
-            zip={zip}
-            accepted={accepted}
-            returned={returned}
-            onItemNameChange={setItemName}
+            postalCode={postalCode}
+            dateAccepted={dateAccepted}
+            dateReturned={dateReturned}
+            onNameChange={setName}
             onOwnerChange={setOwner}
-            onValueChange={setValue}
+            onPriceChange={setPrice}
             onCityChange={setCity}
             onStateChange={setState}
-            onZipChange={setZip}
-            onAcceptedChange={setAccepted}
-            onReturnedChange={setReturned}
+            onPostalCodeChange={setPostalCode}
+            onDateAcceptedChange={setDateAccepted}
+            onDateReturnedChange={setDateReturned}
             onSubmit={onAddWasteFormSubmit}
           />
         </Box>

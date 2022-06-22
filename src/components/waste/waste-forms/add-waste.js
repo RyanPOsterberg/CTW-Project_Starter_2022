@@ -6,38 +6,47 @@ import PropTypes from 'prop-types';
 
 export default function AddWaste(props) {
   const {
-    itemName,
+    name,
     owner,
-    value,
+    price,
     city,
     state,
-    zip,
-    accepted,
-    returned,
-    onItemNameChange,
+    postalCode,
+    dateAccepted,
+    dateReturned,
+    onNameChange,
     onOwnerChange,
-    onValueChange,
+    onPriceChange,
     onCityChange,
     onStateChange,
-    onZipChange,
-    onAcceptedChange,
-    onReturnedChange,
+    onPostalCodeChange,
+    onDateAcceptedChange,
+    onDateReturnedChange,
     onSubmit,
   } = props;
 
   const onSubmitDisabled =
-    !itemName ||
+    !name ||
     !owner ||
-    !value ||
+    !price ||
     !city ||
     !state ||
-    !zip ||
-    !accepted ||
-    !returned;
+    !postalCode ||
+    !dateAccepted ||
+    !dateReturned;
 
   const addWasteHandler = (event) => {
     event.preventDefault();
-    onSubmit(itemName, owner, value, city, state, zip, accepted, returned);
+    onSubmit(
+      name,
+      owner,
+      price,
+      city,
+      state,
+      postalCode,
+      dateAccepted,
+      dateReturned
+    );
   };
 
   return (
@@ -46,10 +55,10 @@ export default function AddWaste(props) {
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
-            label="Item Name"
-            onChange={(event) => onItemNameChange(event.target.value)}
+            label="Name"
+            onChange={(event) => onNameChange(event.target.value)}
             required
-            value={itemName}
+            value={name}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -64,11 +73,11 @@ export default function AddWaste(props) {
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label="Value"
-            onChange={(event) => onValueChange(event.target.value)}
+            label="Price"
+            onChange={(event) => onPriceChange(event.target.value)}
             required
             type="number"
-            value={value}
+            value={price}
           />
         </Grid>
         <Grid item xs={12}>
@@ -92,30 +101,30 @@ export default function AddWaste(props) {
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label="Zip"
-            onChange={(event) => onZipChange(event.target.value)}
+            label="Postal Code"
+            onChange={(event) => onPostalCodeChange(event.target.value)}
             required
-            value={zip}
+            value={postalCode}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             fullWidth
             label="Date Accepted"
-            onChange={(event) => onAcceptedChange(event.target.value)}
+            onChange={(event) => onDateAcceptedChange(event.target.value)}
             required
             type="date"
-            value={accepted}
+            value={dateAccepted}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             fullWidth
             label="Date Returned"
-            onChange={(event) => onReturnedChange(event.target.value)}
+            onChange={(event) => onDateReturnedChange(event.target.value)}
             required
             type="date"
-            value={returned}
+            value={dateReturned}
           />
         </Grid>
       </Grid>
@@ -134,21 +143,21 @@ export default function AddWaste(props) {
 }
 
 AddWaste.propTypes = {
-  itemName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   owner: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   state: PropTypes.string.isRequired,
-  zip: PropTypes.string.isRequired,
-  accepted: PropTypes.string.isRequired,
-  returned: PropTypes.string.isRequired,
-  onItemNameChange: PropTypes.func.isRequired,
+  postalCode: PropTypes.string.isRequired,
+  dateAccepted: PropTypes.string.isRequired,
+  dateReturned: PropTypes.string.isRequired,
+  onNameChange: PropTypes.func.isRequired,
   onOwnerChange: PropTypes.func.isRequired,
-  onValueChange: PropTypes.func.isRequired,
+  onPriceChange: PropTypes.func.isRequired,
   onCityChange: PropTypes.func.isRequired,
   onStateChange: PropTypes.func.isRequired,
-  onZipChange: PropTypes.func.isRequired,
-  onAcceptedChange: PropTypes.func.isRequired,
-  onReturnedChange: PropTypes.func.isRequired,
+  onPostalCodeChange: PropTypes.func.isRequired,
+  onDateAcceptedChange: PropTypes.func.isRequired,
+  onDateReturnedChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

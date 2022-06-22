@@ -76,6 +76,8 @@ export const getWasteList = async () => {
   const response = await fetch(`${baseWasteURL}inventory`, { method: 'GET' });
 
   const parsedResponse = await parseFetchResponse(response);
+  console.log('Get List');
+  console.log(response);
   return parsedResponse;
 };
 
@@ -85,6 +87,7 @@ export const getWasteList = async () => {
  * @returns The student object
  */
 export const addWaste = async (waste) => {
+  console.log(waste);
   const response = await fetch(`${baseWasteURL}inventory`, {
     method: 'POST',
     headers: {

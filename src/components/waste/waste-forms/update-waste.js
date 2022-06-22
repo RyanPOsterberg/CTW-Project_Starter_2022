@@ -9,25 +9,29 @@ import { useState, useEffect } from 'react';
 export default function UpdateWaste(props) {
   const { waste, onSubmit, handleClose } = props;
 
-  const [itemName, setItemName] = useState('');
+  const [name, setName] = useState('');
   const [owner, setOwner] = useState('');
-  const [value, setValue] = useState('');
+  const [price, setPrice] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
-  const [zip, setZip] = useState('');
-  const [accepted, setAccepted] = useState('');
-  const [returned, setReturned] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [dateAccepted, setDateAccepted] = useState('');
+  const [dateReturned, setDateReturned] = useState('');
   useEffect(() => {
     initializeForm();
   });
 
   const initializeForm = () => {
-    if (waste.WasteItemName != null) {
-      setItemName(waste.wasteItemName);
+    if (waste.WasteName != null) {
+      setName(waste.wasteName);
     }
     if (waste.wasteOwner != null) {
       setOwner(waste.wasteOwner);
     }
+    if (waste.wastePrice != null) {
+      setPrice(waste.wastePrice);
+    }
+
     if (waste.wasteCity != null) {
       setCity(waste.wastecity);
     }
@@ -36,14 +40,14 @@ export default function UpdateWaste(props) {
       setState(waste.wasteState);
     }
 
-    if (waste.wasteZip != null) {
-      setZip(waste.wasteZip);
+    if (waste.wastePostalCode != null) {
+      setPostalCode(waste.wastePostalCode);
     }
     if (waste.wasteAccepted != null) {
-      setAccepted(waste.wasteAccepted);
+      setDateAccepted(waste.wasteDateAccepted);
     }
-    if (waste.wasteReturned != null) {
-      setReturned(waste.wasteReturned);
+    if (waste.wasteDateReturned != null) {
+      setDateReturned(waste.wasteDateReturned);
     }
   };
 
@@ -51,25 +55,25 @@ export default function UpdateWaste(props) {
     event.preventDefault();
     onSubmit(
       waste.id,
-      itemName,
+      name,
       owner,
-      value,
+      price,
       city,
       state,
-      zip,
-      accepted,
-      returned
+      postalCode,
+      dateAccepted,
+      dateReturned
     );
   };
 
-  const itemNameChangeHandler = (event) => {
-    setItemName(event.target.value);
+  const nameChangeHandler = (event) => {
+    setName(event.target.value);
   };
   const ownerChangeHandler = (event) => {
     setOwner(event.target.value);
   };
-  const valueChangeHandler = (event) => {
-    setValue(event.target.value);
+  const priceChangeHandler = (event) => {
+    setPrice(event.target.value);
   };
   const cityChangeHandler = (event) => {
     setCity(event.target.value);
@@ -77,14 +81,14 @@ export default function UpdateWaste(props) {
   const stateChangeHandler = (event) => {
     setState(event.target.value);
   };
-  const zipChangeHandler = (event) => {
-    setZip(event.target.value);
+  const postalCodeChangeHandler = (event) => {
+    setPostalCode(event.target.value);
   };
-  const acceptedChangeHandler = (event) => {
-    setAccepted(event.target.value);
+  const dateAcceptedChangeHandler = (event) => {
+    setDateAccepted(event.target.value);
   };
-  const returnedChangeHandler = (event) => {
-    setReturned(event.target.value);
+  const dateReturnedChangeHandler = (event) => {
+    setDateReturned(event.target.value);
   };
 
   return (
@@ -95,9 +99,9 @@ export default function UpdateWaste(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              label="Item Name"
-              onChange={itemNameChangeHandler}
-              value={itemName}
+              label="Name"
+              onChange={nameChangeHandler}
+              value={name}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -111,9 +115,9 @@ export default function UpdateWaste(props) {
           <Grid item xs={12}>
             <TextField
               fullWidth
-              label="Value"
-              onChange={valueChangeHandler}
-              value={value}
+              label="Price"
+              onChange={priceChangeHandler}
+              value={price}
             />
           </Grid>
           <Grid item xs={12}>
@@ -135,27 +139,27 @@ export default function UpdateWaste(props) {
           <Grid item xs={12}>
             <TextField
               fullWidth
-              label="Zip"
-              onChange={zipChangeHandler}
-              value={zip}
+              label="Postal Code"
+              onChange={postalCodeChangeHandler}
+              value={postalCode}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
               label="Date Accepted"
-              onChange={acceptedChangeHandler}
+              onChange={dateAcceptedChangeHandler}
               type="date"
-              value={accepted}
+              value={dateAccepted}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
               label="Date Returned"
-              onChange={returnedChangeHandler}
+              onChange={dateReturnedChangeHandler}
               type="date"
-              value={returned}
+              value={dateReturned}
             />
           </Grid>
         </Grid>
@@ -166,7 +170,7 @@ export default function UpdateWaste(props) {
           onClick={updateWasteHandler}
           variant="contained"
         >
-          Update Student
+          Update Waste Item
         </Button>
       </Box>
     </Dialog>

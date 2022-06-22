@@ -21,23 +21,23 @@ export default function WasteList(props) {
         {wasteList.map((waste) => (
           <Grid item xs={12} key={waste.id}>
             <Typography component="p">{waste.id}</Typography>
-            <Typography component="p">
-              Item Name: {waste.wasteItemName}
-            </Typography>
+            <Typography component="p">Item Name: {waste.wasteName}</Typography>
             <Typography component="p">Owner: ${waste.wasteOwner}</Typography>
-            <Typography component="p">Value: ${waste.wasteValue}</Typography>
+            <Typography component="p">Price: ${waste.wastePrice}</Typography>
             <Typography component="p">City: {waste.wasteCity}</Typography>
             <Typography component="p">State: {waste.wasteState}</Typography>
-            <Typography component="p">Zip: {waste.wasteZip}</Typography>
             <Typography component="p">
-              Date Accepted: {waste.wasteAccepted}
+              Postal Code: {waste.wastePostalCode}
             </Typography>
             <Typography component="p">
-              Date Returned: {waste.wasteReturned}
+              Date Accepted: {waste.wasteDateAccepted}
             </Typography>
-            <Button value={wasteList.id} onClick={archiveWaste}>
+            <Typography component="p">
+              Date Returned: {waste.wasteDateReturned}
+            </Typography>
+            {/* <Button value={wasteList.id} onClick={archiveWaste}>
               Delete
-            </Button>
+            </Button> */}
             <Button value={wasteList.id} onClick={updateWaste}>
               Update
             </Button>
