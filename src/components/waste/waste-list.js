@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 
 export default function WasteList(props) {
-  const { wasteList, archiveWasteHandler, updateWasteHandler } = props;
+  const { updateWasteHandler, wasteList, archiveWasteHandler } = props;
 
-  const archiveWaste = (event) => {
+  const returnWaste = (event) => {
     archiveWasteHandler(event.target.value);
   };
 
@@ -21,24 +21,24 @@ export default function WasteList(props) {
         {wasteList.map((waste) => (
           <Grid item xs={12} key={waste.id}>
             <Typography component="p">{waste.id}</Typography>
-            <Typography component="p">Item Name: {waste.wasteName}</Typography>
-            <Typography component="p">Owner: ${waste.wasteOwner}</Typography>
-            <Typography component="p">Price: ${waste.wastePrice}</Typography>
-            <Typography component="p">City: {waste.wasteCity}</Typography>
-            <Typography component="p">State: {waste.wasteState}</Typography>
+            <Typography component="p">Item Name: {waste.name}</Typography>
+            <Typography component="p">Owner: ${waste.owner}</Typography>
+            <Typography component="p">Price: ${waste.price}</Typography>
+            <Typography component="p">City: {waste.city}</Typography>
+            <Typography component="p">State: {waste.state}</Typography>
             <Typography component="p">
-              Postal Code: {waste.wastePostalCode}
+              Postal Code: {waste.postalCode}
             </Typography>
             <Typography component="p">
-              Date Accepted: {waste.wasteDateAccepted}
+              Date Accepted: {waste.dateAccepted}
             </Typography>
             <Typography component="p">
-              Date Returned: {waste.wasteDateReturned}
+              Date Returned: {waste.dateReturned}
             </Typography>
-            {/* <Button value={wasteList.id} onClick={archiveWaste}>
-              Delete
-            </Button> */}
-            <Button value={wasteList.id} onClick={updateWaste}>
+            <Button value={waste.id} onClick={returnWaste}>
+              Return Item
+            </Button>
+            <Button value={waste.id} onClick={updateWaste}>
               Update
             </Button>
           </Grid>

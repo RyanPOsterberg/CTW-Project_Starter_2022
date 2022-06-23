@@ -19,35 +19,35 @@ export default function UpdateWaste(props) {
   const [dateReturned, setDateReturned] = useState('');
   useEffect(() => {
     initializeForm();
-  });
+  }, []);
 
   const initializeForm = () => {
-    if (waste.WasteName != null) {
-      setName(waste.wasteName);
+    if (waste.name != null) {
+      setName(waste.name);
     }
-    if (waste.wasteOwner != null) {
-      setOwner(waste.wasteOwner);
+    if (waste.owner != null) {
+      setOwner(waste.owner);
     }
-    if (waste.wastePrice != null) {
-      setPrice(waste.wastePrice);
-    }
-
-    if (waste.wasteCity != null) {
-      setCity(waste.wastecity);
+    if (waste.price != null) {
+      setPrice(waste.price);
     }
 
-    if (waste.wasteState != null) {
-      setState(waste.wasteState);
+    if (waste.city != null) {
+      setCity(waste.city);
     }
 
-    if (waste.wastePostalCode != null) {
-      setPostalCode(waste.wastePostalCode);
+    if (waste.state != null) {
+      setState(waste.state);
     }
-    if (waste.wasteAccepted != null) {
-      setDateAccepted(waste.wasteDateAccepted);
+
+    if (waste.postalCode != null) {
+      setPostalCode(waste.postalCode);
     }
-    if (waste.wasteDateReturned != null) {
-      setDateReturned(waste.wasteDateReturned);
+    if (waste.dateAccepted != null) {
+      setDateAccepted(waste.dateAccepted);
+    }
+    if (waste.dateReturned != null) {
+      setDateReturned(waste.dateReturned);
     }
   };
 

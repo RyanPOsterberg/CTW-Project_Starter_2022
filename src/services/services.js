@@ -73,11 +73,15 @@ export const authenticate = async (wasteUser) => {
  * @returns An array of students.
  */
 export const getWasteList = async () => {
-  const response = await fetch(`${baseWasteURL}inventory`, { method: 'GET' });
-
+  const response = await fetch(`${baseWasteURL}inventory`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain',
+      'Content-Type': 'application/json',
+    },
+  });
   const parsedResponse = await parseFetchResponse(response);
-  console.log('Get List');
-  console.log(response);
+
   return parsedResponse;
 };
 
@@ -87,7 +91,6 @@ export const getWasteList = async () => {
  * @returns The student object
  */
 export const addWaste = async (waste) => {
-  console.log(waste);
   const response = await fetch(`${baseWasteURL}inventory`, {
     method: 'POST',
     headers: {
@@ -106,7 +109,8 @@ export const addWaste = async (waste) => {
  * @returns The response from the server.
  */
 export const updateWaste = async (waste) => {
-  const response = await fetch(`${baseWasteURL}inventory/${waste.id}`, {
+  console.log(waste);
+  const response = await fetch(`${baseWasteURL}inventory`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json, text/plain',
@@ -116,5 +120,6 @@ export const updateWaste = async (waste) => {
   });
 
   const parsedResponse = await parseFetchResponse(response);
+
   return parsedResponse;
 };

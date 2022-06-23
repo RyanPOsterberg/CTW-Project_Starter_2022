@@ -28,7 +28,7 @@ export default function Waste() {
   const refreshWaste = async () => {
     const response = await getWasteList();
     setWasteList(response);
-    setActiveWasteList(response.filter((waste) => waste.dateReturned !== ''));
+    setActiveWasteList(response.filter((waste) => true));
   };
 
   const onAddWasteFormSubmit = async (
@@ -64,9 +64,10 @@ export default function Waste() {
     setDateReturned('');
   };
 
-  const archiveWasteHandler = async (wasteId) => {
+  const returnWasteHandler = async (wasteId) => {
     const updatedWaste = {
       id: wasteId,
+      dateReturned: new Date().currentDateTime,
     };
     await updateWaste(updatedWaste);
     refreshWaste();
@@ -101,8 +102,8 @@ export default function Waste() {
       city: newCity,
       state: newState,
       postalCode: newPostalCode,
-      dateAccepted: new Date(newDateAccepted),
-      dateReturned: new Date(newDateReturned),
+      dateAccepted: new Date(),
+      dateReturned: new Date(),
     };
     await updateWaste(updatedWaste);
     refreshWaste();
@@ -127,7 +128,7 @@ export default function Waste() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Waste Items
+            Add Waste Item
           </Typography>
           <AddWaste
             name={name}
@@ -156,9 +157,13 @@ export default function Waste() {
             alignItems: 'center',
           }}
         >
+          <Typography component="h1" variant="h5">
+            Waste List
+          </Typography>
+
           <WasteList
-            wasteItems={activeWasteList}
-            archiveWasteHandler={archiveWasteHandler}
+            wasteList={wasteList}
+            returnWasteHandler={returnWasteHandler}
             updateWasteHandler={updateModalChange}
           />
         </Box>
