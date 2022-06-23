@@ -9,10 +9,23 @@ import ROUTES from '../../constants/routes';
 
 export default function Home() {
   const navigate = useNavigate();
+
   const onRepositoryClick = () => {
     window.open(
       'https://github.com/joeyschroeder/code-the-way-project-starter'
     );
+  };
+
+  const onDemoSignUpFormClick = () => {
+    navigate(ROUTES.SIGN_UP);
+  };
+
+  const onStudentListClick = () => {
+    navigate(ROUTES.STUDENTS);
+  };
+
+  const onWasteListClick = () => {
+    navigate(ROUTES.WASTE);
   };
 
   return (
@@ -65,11 +78,18 @@ export default function Home() {
           spacing={2}
           justifyContent="center"
         >
-          <Button variant="contained" onClick={() => navigate(ROUTES.SIGN_UP)}>
-            Sign-Up Form
+          <Button variant="contained" onClick={onDemoSignUpFormClick}>
+            Demo Sign-Up Form
           </Button>
+
           <Button variant="outlined" onClick={onRepositoryClick}>
             Repository
+          </Button>
+          <Button variant="contained" onClick={onStudentListClick}>
+            Students List
+          </Button>
+          <Button variant="contained" onClick={onWasteListClick}>
+            Waste List
           </Button>
         </Stack>
       </Box>
