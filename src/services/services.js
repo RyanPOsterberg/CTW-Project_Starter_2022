@@ -1,3 +1,4 @@
+import { ContactsOutlined } from '@mui/icons-material';
 import { parseFetchResponse } from '../parse-fetch-response/parse-fetch-response';
 
 const baseURL = 'https://dev-lead2change-ctw.azurewebsites.net/example/';
@@ -69,8 +70,8 @@ export const authenticate = async (wasteUser) => {
 // its response needs to be stored into a new object
 
 /**
- * It makes a request to the server, parses the response, and returns the students
- * @returns An array of students.
+ * It makes a request to the server, parses the response, and returns the Waste Items
+ * @returns An array of Waste Items.
  */
 export const getWasteList = async () => {
   const response = await fetch(`${baseWasteURL}inventory`, {
@@ -86,9 +87,9 @@ export const getWasteList = async () => {
 };
 
 /**
- * It makes a POST request to the endpoint, and returns the student object that was created
- * @param student - The student to add
- * @returns The student object
+ * It makes a POST request to the endpoint, and returns the Waste Item object that was created
+ * @param waste - The Waste Item to add
+ * @returns The Waste Item object
  */
 export const addWaste = async (waste) => {
   const response = await fetch(`${baseWasteURL}inventory`, {
@@ -104,8 +105,8 @@ export const addWaste = async (waste) => {
 };
 
 /**
- * It makes a POST request to the endpoint with the updated student
- * @param student - The student to update
+ * It makes a POST request to the endpoint with the updated waste item
+ * @param waste - The waste item to update
  * @returns The response from the server.
  */
 export const updateWaste = async (waste) => {

@@ -102,8 +102,8 @@ export default function Waste() {
       city: newCity,
       state: newState,
       postalCode: newPostalCode,
-      dateAccepted: new Date(),
-      dateReturned: new Date(),
+      dateAccepted: new Date(newDateAccepted),
+      dateReturned: new Date(newDateReturned),
     };
     await updateWaste(updatedWaste);
     refreshWaste();
