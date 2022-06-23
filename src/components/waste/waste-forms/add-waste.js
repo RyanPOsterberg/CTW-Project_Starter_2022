@@ -32,8 +32,7 @@ export default function AddWaste(props) {
     !city ||
     !state ||
     !postalCode ||
-    !dateAccepted ||
-    !dateReturned;
+    !dateAccepted;
 
   const addWasteHandler = (event) => {
     event.preventDefault();

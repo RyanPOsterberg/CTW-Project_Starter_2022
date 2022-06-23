@@ -28,7 +28,7 @@ export default function Waste() {
   const refreshWaste = async () => {
     const response = await getWasteList();
     setWasteList(response);
-    setActiveWasteList(response.filter((waste) => true));
+    setActiveWasteList(response.filter((waste) => waste.dateReturned == null));
   };
 
   const onAddWasteFormSubmit = async (
@@ -65,11 +65,10 @@ export default function Waste() {
   };
 
   const returnWasteHandler = async (wasteId) => {
-    const updatedWaste = {
-      id: wasteId,
-      dateReturned: new Date().currentDateTime,
-    };
-    await updateWaste(updatedWaste);
+    const wasteIndex = wasteList.findIndex((waste) => waste.id === wasteId);
+    const returnedWaste = wasteList[wasteIndex];
+    returnedWaste.dateReturned = new Date();
+    await updateWaste(returnedWaste);
     refreshWaste();
   };
 
@@ -162,8 +161,8 @@ export default function Waste() {
           </Typography>
 
           <WasteList
-            wasteList={wasteList}
-            returnWasteHandler={returnWasteHandler}
+            wasteList={activeWasteList}
+            archiveWasteHandler={returnWasteHandler}
             updateWasteHandler={updateModalChange}
           />
         </Box>

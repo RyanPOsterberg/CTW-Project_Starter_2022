@@ -22,7 +22,7 @@ export default function WasteList(props) {
           <Grid item xs={12} key={waste.id}>
             <Typography component="p">{waste.id}</Typography>
             <Typography component="p">Item Name: {waste.name}</Typography>
-            <Typography component="p">Owner: ${waste.owner}</Typography>
+            <Typography component="p">Owner: {waste.owner}</Typography>
             <Typography component="p">Price: ${waste.price}</Typography>
             <Typography component="p">City: {waste.city}</Typography>
             <Typography component="p">State: {waste.state}</Typography>

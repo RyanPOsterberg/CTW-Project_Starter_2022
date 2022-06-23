@@ -110,7 +110,6 @@ export const addWaste = async (waste) => {
  * @returns The response from the server.
  */
 export const updateWaste = async (waste) => {
-  console.log(waste);
   const response = await fetch(`${baseWasteURL}inventory`, {
     method: 'PUT',
     headers: {
