@@ -123,3 +123,25 @@ export const updateWaste = async (waste) => {
 
   return parsedResponse;
 };
+
+/**
+ * It makes a POST request to the endpoint with the updated waste item
+ * @param waste - The waste item to update
+ * @returns The response from the server.
+ */
+export const deleteWaste = async (waste) => {
+  // const response = await fetch(`${baseWasteURL}inventory/${wasteID}`, {
+  console.log(waste);
+  await fetch(`${baseWasteURL}inventory/${waste.id}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json, text/plain',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(waste.id),
+  });
+
+  // const parsedResponse = await parseFetchResponse(response);
+
+  // return parsedResponse;
+};

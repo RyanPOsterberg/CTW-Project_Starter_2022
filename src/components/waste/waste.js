@@ -5,7 +5,12 @@ import { useState, useEffect } from 'react';
 import AddWaste from './waste-forms/add-waste';
 import WasteList from './waste-list';
 import UpdateWaste from './waste-forms/update-waste';
-import { getWasteList, addWaste, updateWaste } from '../../services/services';
+import {
+  getWasteList,
+  addWaste,
+  updateWaste,
+  deleteWaste,
+} from '../../services/services';
 
 export default function Waste() {
   const [name, setName] = useState('');
@@ -109,6 +114,13 @@ export default function Waste() {
     updateModalChange();
   };
 
+  const deleteWasteHandler = async (wasteId) => {
+    const wasteIndex = wasteList.findIndex((waste) => waste.id === wasteId);
+    const deletedWaste = wasteList[wasteIndex];
+
+    await deleteWaste(deletedWaste);
+    refreshWaste();
+  };
   return (
     <div>
       <Container maxWidth="sm">
@@ -164,6 +176,7 @@ export default function Waste() {
             wasteList={activeWasteList}
             archiveWasteHandler={returnWasteHandler}
             updateWasteHandler={updateModalChange}
+            deleteWasteHandler={deleteWasteHandler}
           />
         </Box>
       </Container>

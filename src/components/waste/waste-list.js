@@ -5,7 +5,12 @@ import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 
 export default function WasteList(props) {
-  const { updateWasteHandler, wasteList, archiveWasteHandler } = props;
+  const {
+    updateWasteHandler,
+    wasteList,
+    archiveWasteHandler,
+    deleteWasteHandler,
+  } = props;
 
   const returnWaste = (event) => {
     archiveWasteHandler(event.target.value);
@@ -14,7 +19,9 @@ export default function WasteList(props) {
   const updateWaste = (event) => {
     updateWasteHandler(event.target.value);
   };
-
+  const deleteWaste = (event) => {
+    deleteWasteHandler(event.target.value);
+  };
   return (
     <Box sx={{ mt: 3 }}>
       <Grid container spacing={2}>
@@ -41,6 +48,9 @@ export default function WasteList(props) {
             <Button value={waste.id} onClick={updateWaste}>
               Update
             </Button>
+            <Button value={waste.id} onClick={deleteWaste}>
+              Delete
+            </Button>
           </Grid>
         ))}
       </Grid>
@@ -51,10 +61,12 @@ WasteList.propTypes = {
   wasteList: PropTypes.array,
   archiveWasteHandler: PropTypes.func,
   updateWasteHandler: PropTypes.func,
+  deleteWasteHandler: PropTypes.func,
 };
 
 WasteList.defaultProps = {
   wasteList: [],
   archiveWasteHandler: () => {},
   updateWasteHandler: () => {},
+  deleteWasteHandler: () => {},
 };
